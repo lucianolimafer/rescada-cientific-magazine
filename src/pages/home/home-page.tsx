@@ -5,6 +5,7 @@ import FeatueSVG from "../../assets/research.svg";
 import { BottomComponent } from "../../components/bottom";
 import { CardArticleComponent } from "../../components/card-article";
 import { HeaderComponent } from "../../components/header";
+import { IPerson, PersonComponent } from "../../components/person";
 import {
   GET_ARTICLES_BY_CATEGORY,
   GET_ARTICLES_LIST
@@ -85,22 +86,13 @@ export function HomePage() {
           Autores na versão atual
         </Typography>
         <Stack direction="row" paddingTop={1}>
-          {data?.authors?.map((author) => (
+          {data?.authors?.map((author: IPerson) => (
             <>
-              <Stack
-                alignItems="center"
-                justifyContent="center"
-                sx={{ maxWidth: 120 }}
-              >
-                <Avatar
-                  alt={author.name}
-                  src={author.avatar.url || "/broken-image.jpg"}
-                />
-                <Typography maxWidth="80%" textAlign="center">
-                  {author.name}
-                </Typography>
-                <Typography variant="caption">{author.description}</Typography>
-              </Stack>
+              <PersonComponent
+                name={author.name}
+                avatarUrl={author.avatar.url}
+                description={author.description}
+              />
             </>
           ))}
         </Stack>
